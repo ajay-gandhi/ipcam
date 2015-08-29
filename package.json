@@ -1,0 +1,29 @@
+{
+  "name": "ipcam",
+  "version": "0.0.1",
+  "description": "Stream your webcam on the web",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajay-gandhi/ipcam.git"
+  },
+  "keywords": [
+    "stream",
+    "camera",
+    "webcam"
+  ],
+  "author": "Ajay Gandhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ajay-gandhi/ipcam/issues"
+  },
+  "homepage": "https://github.com/ajay-gandhi/ipcam#readme"
+}
