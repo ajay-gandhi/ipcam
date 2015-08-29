@@ -23,12 +23,20 @@ app.listen(port, host, function () {
 
 /*********************************** Camera ***********************************/
 
-var take_pic = function () {
-  // args should save to html/ subdir
-  var args = ['-r', '12800x960', '--png', '85', '-D', '1', 'html/i.png'];
-  var fswebcam = spawn('fswebcam', args);
+var args = [
+  '-i', '/dev/video0', // Source is webcam (/dev/video0)
+  '-f', 'avi',         // AVI format
+  '-ar', '44100',      // Sampling rate
+  '-ac', 2,            // Stereo
+  'pipe:1'             // Pipe to stdout
+];
+var rec = spawn('ffmpeg', args);
 
-  setTimeout(take_pic, 1000);
-}
+rec.on('close', function (code) {
+  console.log('camera child process exited with code ' + code);
+});
 
-take_pic();
+// Stream video
+app.get('/video.avi', function (req, res) {
+  rec.stdout.pipe(res);
+});
